@@ -7,15 +7,6 @@ const numbers           = [1,2,3,4,5,6,7,8,9,0],
       maxLengthPassword = 6;
 
 buttonHack.addEventListener('click', hackPassword)
-password.addEventListener('input', checkingNumberCharacters)
-
-function checkingNumberCharacters(){
-    if( password.value.length <= maxLengthPassword ){
-        errorOut.innerHTML = ''
-    }else{
-        errorOut.innerHTML = 'You have exceeded the maximum numbers'
-    }
-}
 
 function checkingPossiblyPassword(password){
     const lengthPassword = password.value.length;
