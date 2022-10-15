@@ -22,7 +22,7 @@ function checkingPossiblyPassword(password){
 
     if( (password.value).match(/[0-9]/) ){
         errorOut.innerHTML = '';
-        if( lengthPassword <= maxLengthPassword && lengthPassword > 0 ){
+        if( lengthPassword > 0 ){
             errorOut.innerHTML = '';
             return true
         }else{
@@ -33,23 +33,31 @@ function checkingPossiblyPassword(password){
     }
 }
 
-
 function hackPassword(){
     const lengthPassword = password.value.length;
     let forNum = 1;
     if( checkingPossiblyPassword(password) ){
-        for( let i = 0; i < forNum; i++ ){
-            let generatePassword = '';
+        let i = 0;
+        out.innerHTML = 'Program is working <br> Please just wait :)'
+        const search = setInterval(() =>{
+            if(i < forNum){
+                i++;
 
-            for( let i = 0; i < lengthPassword; i++ ){
-                generatePassword += numbers[Math.floor(Math.random() * numbers.length)];
-            }
-
-            if( password.value == generatePassword ){
-                out.innerHTML = `Attempts made: ${i} <br> Final password: ${generatePassword}`;
+                let generatePassword = '';
+    
+                for( let i = 0; i < lengthPassword; i++ ){
+                    generatePassword += numbers[Math.floor(Math.random() * numbers.length)];
+                }
+    
+                if( password.value == generatePassword ){
+                    out.innerHTML = `Attempts made: ${i} <br> Final password: ${generatePassword}`;
+                    clearInterval(search)
+                }else{
+                    forNum++;
+                }
             }else{
-                forNum++;
+                clearInterval(search)
             }
-        }
+        }, 1)
     }
 }
